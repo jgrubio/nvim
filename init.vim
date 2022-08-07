@@ -19,6 +19,7 @@ Plug 'airblade/vim-gitgutter' " Mostrar cambios hecho en un fichero repositado
 Plug 'voldikss/vim-floaterm' " Sacar una terminal desde vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Ayuda a la hora de programar con autocompletados
 Plug 'hashivim/vim-terraform' " Highlight Terraform
+Plug 'easymotion/vim-easymotion' " Locura de buscador
 
 
 call plug#end()
@@ -157,3 +158,9 @@ endfunction
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" vim-easymotion
+let g:EasyMotion_do_mapping = 0 " Deshabilita valores por defecto
+" Buscar un caracter
+nmap s <Plug>(easymotion-overwin-f)
+let g:EasyMotion_smartcase = 1 " Habilitar case-insensitive en las busquedas
