@@ -22,7 +22,7 @@ Plug 'voldikss/vim-floaterm' " Sacar una terminal desde vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Ayuda a la hora de programar con autocompletados
 Plug 'hashivim/vim-terraform' " Highlight Terraform
 Plug 'easymotion/vim-easymotion' " Locura de buscador
-
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' } " Markdown preview and highlight
 
 call plug#end()
 
@@ -197,3 +197,10 @@ let g:EasyMotion_do_mapping = 0 " Deshabilita valores por defecto
 " Buscar un caracter
 nmap s <Plug>(easymotion-overwin-f)
 let g:EasyMotion_smartcase = 1 " Habilitar case-insensitive en las busquedas
+
+" MarkdownPreview
+let g:mkdp_port = '6969' " markdown-preview MarkdownPreview - Options use a custom port to start server or empty for random
+let g:mkdp_page_title = '「${name}」' " preview page title ${name} will be replace with the file name
+let g:mkdp_filetypes = ['markdown'] " recognized filetypes these filetypes will have MarkdownPreview... commands
+let g:mkdp_theme = 'light' " set default theme (dark or light)
+map <F4> :MarkdownPreview<CR>
