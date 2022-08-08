@@ -1,3 +1,6 @@
+" Opciones de plugins necesarias antes de su carga
+let g:polyglot_disabled = ['markdown'] " Deshabilitamos markdown en polyglot
+
 " Directorio de plugins
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -29,6 +32,7 @@ set hidden " TextEdit might fail if hidden is not set.
 set cmdheight=2 " Give more space for displaying messages.
 set updatetime=300 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 set shortmess+=c " Don't pass messages to |ins-completion-menu|.
+set number " Habilitamos numeros
 
 " Establecemos nuestra map leader a ","
 let mapleader = "," " map leader to comma
@@ -41,15 +45,8 @@ let mapleader = "," " map leader to comma
 nnoremap <C-b> :w <bar> %bd <bar> e# <bar> bd# <CR>
 
 set termguicolors " Activa true colors en la terminal
-" Configuración para activar y desactivar los numeros relativos.
-" También mostrará los numeros relativos en la pestaña de vim que tenga el foco, en las demás será absoluto
-map <F3> :set nu! rnu!<CR>
-set number
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-augroup END
+" Configuración para activar y desactivar los numeros de cada linea.
+map <F3> :set nu!<CR>
 " Fin de la configuración de los números
 
 " tokyonight-vim
