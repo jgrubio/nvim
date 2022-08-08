@@ -29,7 +29,7 @@ call plug#end()
 " Configuracion general, pero que usamos para coc
 set encoding=utf-8 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some unicode characters in the file autoload/float.vim
 set hidden " TextEdit might fail if hidden is not set.
-set cmdheight=2 " Give more space for displaying messages.
+set cmdheight=1 " Give more space for displaying messages.
 set updatetime=300 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 set shortmess+=c " Don't pass messages to |ins-completion-menu|.
 set number " Habilitamos numeros
