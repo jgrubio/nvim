@@ -5,7 +5,6 @@ Plug 'sheerun/vim-polyglot' " Highlight
 Plug 'ghifarit53/tokyonight-vim' " Coloschema
 Plug 'Yggdroot/indentLine' " Lineas en el tabulado
 Plug 'psliwka/vim-smoothie' " Movimiento más soft al moverte por un fichero
-Plug 'mbbill/undotree' " Mostrar el histórico de cambios hecho en un fichero
 Plug 'tpope/vim-commentary' " Comentar lineas de un fichero
 Plug 'preservim/nerdtree' " NerdTree
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Poner bonito NerdTree
@@ -63,11 +62,6 @@ colorscheme tokyonight " habilitamos el tema tokyonight
 let g:indentLine_fileTypeExclude = ['text', 'sh', 'help', 'terminal'] " No mostrar en ciertos tipos de buffers y archivos
 let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*'] " No mostrar en ciertos tipos de buffers y archivos
 
-" undotree
-nnoremap <F5> :UndotreeToggle<CR>
-let g:undotree_WindowLayout = 4 " Stilo 4 de los que hay predeterminados
-let g:undotree_SetFocusWhenToggle = 1 " Coger el foco cuando abrimos UndoTree
-
 " nerdtree
 let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
 map <F2> :NERDTreeToggle<CR>
@@ -121,10 +115,10 @@ endif
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -133,7 +127,7 @@ endfunction
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " GoTo code navigation.
