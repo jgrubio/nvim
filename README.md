@@ -34,6 +34,7 @@ Paste the file `init.vim` in `.config/nvim/init.vim` or make a symbolic link.
 	}
 }
 ```
+13) Instalar yarn
 
 ## Shortcuts and tricks
 
@@ -75,5 +76,5 @@ Numbered tab: _nnn_gt
 ### Atajos Fn's
 `F2` -> NerdTree
 `F3` -> Sacar/Ocultar numeros laterales
-`F5` -> UndoTree
+`F4` -> MarkdowPreview
 `F12` -> Sacar shell delante de Vim
