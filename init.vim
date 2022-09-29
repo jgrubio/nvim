@@ -15,7 +15,7 @@ Plug 'ryanoasis/vim-devicons' " Poner bonito NerdTree
 Plug 'xuyuanp/nerdtree-git-plugin' " Mostrar el estado de los ficheros de git desde NerdTree
 Plug 'vim-airline/vim-airline' " Barra inferior y superior al editar un fichero
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " binario fzf (buscador mejorado)
-Plug 'junegunn/fzf.vim' " fzf para bim
+Plug 'junegunn/fzf.vim' " fzf para vim
 Plug 'tpope/vim-fugitive' " Lanzar comandos git desde la terminal
 Plug 'airblade/vim-gitgutter' " Mostrar cambios hecho en un fichero repositado
 Plug 'voldikss/vim-floaterm' " Sacar una terminal desde vim
@@ -23,6 +23,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " Ayuda a la hora de programar c
 Plug 'hashivim/vim-terraform' " Highlight Terraform
 Plug 'easymotion/vim-easymotion' " Locura de buscador
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' } " Markdown preview and highlight
+Plug 'lukas-reineke/indent-blankline.nvim' " Identacion con colores
 
 call plug#end()
 
@@ -33,6 +34,7 @@ set cmdheight=1 " Give more space for displaying messages.
 set updatetime=300 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 set shortmess+=c " Don't pass messages to |ins-completion-menu|.
 set number " Habilitamos numeros
+set cursorline " habilitar resaltado por fila
 
 " Establecemos nuestra map leader a ","
 let mapleader = "," " map leader to comma
@@ -63,7 +65,7 @@ let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*'] " No mostrar en cie
 let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
 map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1 " Cerrar NerdTree al salir del fichero
-"let NERDTreeMinimalUI = 1 " disable that old “Press ? for help”.
+" let NERDTreeMinimalUI = 1 " disable that old “Press ? for help”.
 let NERDTreeDirArrows = 1
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif " Cerrar NerdTree si solo queda NerdTree abierto
 
@@ -168,16 +170,6 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
-
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
 
@@ -204,3 +196,26 @@ let g:mkdp_page_title = '「${name}」' " preview page title ${name} will be rep
 let g:mkdp_filetypes = ['markdown'] " recognized filetypes these filetypes will have MarkdownPreview... commands
 let g:mkdp_theme = 'light' " set default theme (dark or light)
 map <F4> :MarkdownPreview<CR>
+
+lua << EOF
+vim.opt.termguicolors = true
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#56B6C2 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent2 guifg=#98C379 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent3 guifg=#E5C07B gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent4 guifg=#E06C75 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    how_end_of_line = false,
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+    },
+}
+EOF
