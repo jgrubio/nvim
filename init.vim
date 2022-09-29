@@ -5,7 +5,7 @@ let g:polyglot_disabled = ['markdown'] " Deshabilitamos markdown en polyglot
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'sheerun/vim-polyglot' " Highlight
-Plug 'ghifarit53/tokyonight-vim' " Coloschema
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' } " Coloschema
 Plug 'Yggdroot/indentLine' " Lineas en el tabulado
 Plug 'psliwka/vim-smoothie' " Movimiento más soft al moverte por un fichero
 Plug 'tpope/vim-commentary' " Comentar lineas de un fichero
@@ -52,10 +52,7 @@ map <F3> :set nu!<CR>
 " Fin de la configuración de los números
 
 " tokyonight-vim
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1 " permitimos que ponga cosas en itálica
-let g:airline_theme = "tokyonight" " habilitamos tokyonight en el pluging airline
-colorscheme tokyonight " habilitamos el tema tokyonight
+colorscheme tokyonight-night " habilitamos el tema tokyonight
 
 " indentLine
 let g:indentLine_fileTypeExclude = ['text', 'sh', 'help', 'terminal'] " No mostrar en ciertos tipos de buffers y archivos
