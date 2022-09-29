@@ -6,7 +6,7 @@ Paste the file `init.vim` in `.config/nvim/init.vim` or make a symbolic link.
 
 1) Instalar neovim
 2) Instalar  to [Vim-Plug](https://github.com/junegunn/vim-plug#neovim) to neovim
-3) 2) Crear fichero (donde se van poner los plugins y las configuraciones)
+3) Crear fichero (donde se van poner los plugins y las configuraciones)
 		nvim /home/_USER_/.config/nvim/init.vim
 4) Abre `nvim` y escribe `:PlugUpdate`  para instalar y actualizar los plugins, y `:PlugUpgrade` para actualizar el propio gestor `vim-plug` 
 5) Instalar esta [fuente](https://github.com/romkatv/powerlevel10k#manual-font-installation)
@@ -35,6 +35,7 @@ Paste the file `init.vim` in `.config/nvim/init.vim` or make a symbolic link.
 }
 ```
 13) Instalar yarn
+14) Create folder "~/.local/share/nvim/site/autoload/airline/themes" and paste the file "tokyonight.vim"
 
 ## Shortcuts and tricks
 
