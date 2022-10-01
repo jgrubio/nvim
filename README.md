@@ -14,7 +14,7 @@ Paste the file `init.vim` in `.config/nvim/init.vim` or make a symbolic link.
 7) Instala [bat](https://github.com/sharkdp/bat)
 8) Instalar `zsh`
 9) Instalar `ohmyzsh`
-10) Install `z`
+10) Install `zoxide`
 11) Install `the_silver_searcher`
 12) [Install](https://releases.hashicorp.com/terraform-ls/) [terraform-ls](https://github.com/hashicorp/terraform-ls/blob/main/docs/installation.md) only download de binary and put in `/usr/local/bin/`. And execute in nvim `:CocConfig`  and paste the [next](https://github.com/hashicorp/terraform-ls/blob/main/docs/USAGE.md#vim--neovim):
 
@@ -39,7 +39,7 @@ Paste the file `init.vim` in `.config/nvim/init.vim` or make a symbolic link.
 
 ## Shortcuts and tricks
 
-Color Html (night): `#1A1B26`
+Color Html (night): `#1A1B26`/32" # Ip's de cliente pedidas por Antonio
 
 ### Comentar
 Para comentar y descomentar una linea  `gcc`
