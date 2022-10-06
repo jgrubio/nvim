@@ -8,7 +8,7 @@ Paste the file `init.vim` in `.config/nvim/init.vim` or make a symbolic link.
 2) Instalar  to [Vim-Plug](https://github.com/junegunn/vim-plug#neovim) to neovim
 3) Crear fichero (donde se van poner los plugins y las configuraciones)
 		nvim /home/_USER_/.config/nvim/init.vim
-4) Abre `nvim` y escribe `:PlugUpdate`  para instalar y actualizar los plugins, y `:PlugUpgrade` para actualizar el propio gestor `vim-plug` 
+4) Abre `nvim` y escribe `:PlugUpdate`  para instalar y actualizar los plugins, y `:PlugUpgrade` para actualizar el propio gestor `vim-plug`
 5) Instalar esta [fuente](https://github.com/romkatv/powerlevel10k#manual-font-installation)
 6) Pegar el fichero `init.vim` en _.config/nvim/init.vim_
 7) Instala [bat](https://github.com/sharkdp/bat)
@@ -43,7 +43,7 @@ Color Html (night): `#1A1B26`/32" # Ip's de cliente pedidas por Antonio
 
 ### Comentar
 Para comentar y descomentar una linea  `gcc`
-Para comentar y descomentar un bloque  `gc` 
+Para comentar y descomentar un bloque  `gc`
 
 ### NerdTree
     t: Open the selected file in a new tab
@@ -78,4 +78,5 @@ Numbered tab: _nnn_gt
 `F2` -> NerdTree
 `F3` -> Sacar/Ocultar numeros laterales
 `F4` -> MarkdowPreview
+`F5` -> Mostrar diff
 `F12` -> Sacar shell delante de Vim
