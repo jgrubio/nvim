@@ -192,7 +192,6 @@ let g:mkdp_theme = 'light' " set default theme (dark or light)
 map <F4> :MarkdownPreview<CR>
 
 " Gitsigns
-" 
 map <F5> :Gitsigns preview_hunk<CR>
 
 " Luaconfig
