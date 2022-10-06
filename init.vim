@@ -17,7 +17,7 @@ Plug 'vim-airline/vim-airline' " Barra inferior y superior al editar un fichero
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " binario fzf (buscador mejorado)
 Plug 'junegunn/fzf.vim' " fzf para vim
 Plug 'tpope/vim-fugitive' " Lanzar comandos git desde la terminal
-Plug 'airblade/vim-gitgutter' " Mostrar cambios hecho en un fichero repositado
+Plug 'lewis6991/gitsigns.nvim' " Mostrar cambios hechos en un fichero repositado
 Plug 'voldikss/vim-floaterm' " Sacar una terminal desde vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Ayuda a la hora de programar con autocompletados
 Plug 'hashivim/vim-terraform' " Highlight Terraform
@@ -80,9 +80,6 @@ let g:fzf_commands_expect = 'alt-enter' " Ejecutar comandos con alt-enter :Comma
 let g:fzf_history_dir = '~/.local/share/fzf-history' " Guardar historial de búsquedas
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :Ag<CR>
-
-" vim-gitgutter
-set updatetime=250 " Actualizar barra cada 250 mili segundos
 
 " vim-floaterm
 let g:floaterm_keymap_toggle = '<F12>'
@@ -194,25 +191,57 @@ let g:mkdp_filetypes = ['markdown'] " recognized filetypes these filetypes will 
 let g:mkdp_theme = 'light' " set default theme (dark or light)
 map <F4> :MarkdownPreview<CR>
 
-lua << EOF
-vim.opt.termguicolors = true
-vim.cmd [[highlight IndentBlanklineIndent1 guifg=#56B6C2 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent2 guifg=#98C379 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent3 guifg=#E5C07B gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent4 guifg=#E06C75 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+" Gitsigns
+" 
+map <F5> :Gitsigns preview_hunk<CR>
 
+" Luaconfig
+lua << EOF
 require("indent_blankline").setup {
     space_char_blankline = " ",
     how_end_of_line = false,
-    char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
-    },
+    show_end_of_line = true,
+}
+
+require('gitsigns').setup {
+  signs = {
+    add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+  },
+  signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+  numhl      = true, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  watch_gitdir = {
+    interval = 1000,
+    follow_files = true
+  },
+  attach_to_untracked = true,
+  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 1000,
+    ignore_whitespace = false,
+  },
+  current_line_blame_formatter = '  //  <author>, <author_time:%Y-%m-%d> - <summary>',
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  max_file_length = 40000, -- Disable if file is longer than this (in lines)
+  preview_config = {
+    -- Options passed to nvim_open_win
+    border = 'single',
+    style = 'minimal',
+    relative = 'cursor',
+    row = 0,
+    col = 1
+  },
+  yadm = {
+    enable = false
+  },
 }
 EOF
