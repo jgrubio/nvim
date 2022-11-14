@@ -35,6 +35,10 @@ set updatetime=300 " Having longer updatetime (default is 4000 ms = 4 s) leads t
 set shortmess+=c " Don't pass messages to |ins-completion-menu|.
 set number " Habilitamos numeros
 set cursorline " habilitar resaltado por fila
+set mouse-=nvi " Deshabilita mouse support
+
+" salimos del modo escritura pulsando kj
+inoremap kj <Esc>
 
 " Establecemos nuestra map leader a ","
 let mapleader = "," " map leader to comma
