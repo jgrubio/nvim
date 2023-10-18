@@ -24,6 +24,7 @@ Plug 'hashivim/vim-terraform' " Highlight Terraform
 Plug 'easymotion/vim-easymotion' " Locura de buscador
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' } " Markdown preview and highlight
 Plug 'lukas-reineke/indent-blankline.nvim' " Identacion con colores
+Plug 'farmergreg/vim-lastplace' " Reopens files at your last edit position
 
 call plug#end()
 
@@ -51,6 +52,17 @@ let mapleader = "," " map leader to comma
 nnoremap <C-b> :w <bar> %bd <bar> e# <bar> bd# <CR>
 
 set termguicolors " Activa true colors en la terminal
+" " Configuración para activar y desactivar los numeros relativos.
+" " También mostrará los numeros relativos en la pestaña de vim que tenga el foco, en las demás será absoluto
+" map <F3> :set nu! rnu!<CR>
+" set number
+" augroup numbertoggle
+"   autocmd!
+"   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+"   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+" augroup END
+
+
 " Configuración para activar y desactivar los numeros de cada linea.
 map <F3> :set nu!<CR>
 " Fin de la configuración de los números
